@@ -1,0 +1,273 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #fff;
+  padding: 10px;
+}
+
+.app {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calc {
+  width: 100%;
+  max-width: 410px;
+  background-color: #0f0f0f;
+  border-radius: 28px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Zone Écran avec position relative pour l'historique */
+.screen {
+  position: relative;
+  height: 160px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #2a2a2a, #1a1a1a);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.status {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.display {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: right;
+}
+
+/* Panneau d'historique superposé sur l'écran */
+.history-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(20, 20, 20, 0.95);
+  padding: 10px;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.history-panel h3 {
+  font-size: 0.9rem;
+  color: #ff4d4d;
+  border-bottom: 1px solid #333;
+  padding-bottom: 2px;
+}
+
+.history-list {
+  flex: 1;
+  overflow-y: auto;
+  font-family: monospace;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+/* Layout */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 90px;
+  gap: 15px;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Ligne des contrôles hauts */
+.control-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+button {
+  border: none;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 14px;
+  transition: opacity 0.2s;
+}
+
+/* Style spécifique des boutons du haut */
+.ctrl-btn {
+  padding: 12px 0;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Icône image pour Power */
+.power-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.power {
+  background: radial-gradient(circle at 30% 30%, #ffffff, #ffffff);
+}
+
+.power.active {
+  background: radial-gradient(circle at 30% 30%, hsl(0, 0%, 100%), #ffffff);
+}
+
+.del { background-color: #555; }
+.ac { background-color: #cc3333; }
+.hist { background-color: #0066cc; }
+
+.numbers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.num {
+  background-color: #3a3a3a;
+  padding: 18px 0;
+}
+
+.equal {
+  background: linear-gradient(135deg, #10ff88, #065c36);
+}
+
+/* Barre d'opération sélecteur rouge */
+.right {
+  position: relative;
+}
+
+.op-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  background: linear-gradient(to bottom, #150000 0%, #660000 50%, #ff0000 100%);
+  border-radius: 20px;
+}
+
+.op-item {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: none;
+  font-size: 2rem;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+}
+
+/* Le triangle blanc dynamique */
+.op-slider {
+  position: absolute;
+  right: -25px;
+  top: 10%;
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 25px solid #ffffff;
+  transform: translateY(-50%);
+  transition: top 0.2s ease;
+  display: none;
+}
+
+/* Gestion du mode désactivé (Boutons bloqués) */
+button:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+/* RESPONSIVE - Compatible tous écrans */
+@media (max-width: 480px) {
+  .calc {
+    padding: 15px;
+    border-radius: 20px;
+  }
+
+  .screen {
+    height: 140px;
+    padding: 10px;
+  }
+
+  .display {
+    font-size: 2.5rem;
+  }
+
+  .status {
+    font-size: 0.8rem;
+  }
+
+  .control-row {
+    gap: 5px;
+  }
+
+  .ctrl-btn {
+    padding: 10px 0;
+    font-size: 1rem;
+  }
+
+  .numbers {
+    gap: 8px;
+  }
+
+  .num {
+    padding: 15px 0;
+  }
+
+  .op-box {
+    min-height: 280px;
+  }
+
+  .op-item {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .display {
+    font-size: 2rem;
+  }
+
+  .ctrl-btn {
+    font-size: 0.9rem;
+  }
+
+  .num {
+    padding: 12px 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .calc {
+    max-width: 450px;
+  }
+}
