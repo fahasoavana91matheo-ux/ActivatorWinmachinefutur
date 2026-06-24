@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculatrice L1 avec Historique</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <div class="calc">
+      <div class="screen">
+        <div class="status" id="status">Éteinte (Cliquez sur Power)</div>
+        <div class="display" id="display">0</div>
+        
+        <div class="history-panel" id="historyPanel">
+          <h3>Historique (50 max)</h3>
+          <div class="history-list" id="historyList">
+            <p style="color:#aaa; font-size:0.9rem;">Aucun calcul pour le moment</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="layout">
+        <div class="left">
+          <div class="control-row">
+            <button class="ctrl-btn power" id="powerBtn">
+              <img src="power-icon-isolated-on-white-background-on-off-button-illustration-free-vector.webp" alt="Power" class="power-icon" />
+            </button>
+            <button class="ctrl-btn del" id="delBtn" disabled>DEL</button>
+            <button class="ctrl-btn ac" id="acBtn" disabled>AC</button>
+            <button class="ctrl-btn hist" id="histBtn" disabled>HIST</button>
+          </div>
+
+          <div class="numbers">
+            <button class="num" disabled>7</button>
+            <button class="num" disabled>8</button>
+            <button class="num" disabled>9</button>
+            <button class="num" disabled>4</button>
+            <button class="num" disabled>5</button>
+            <button class="num" disabled>6</button>
+            <button class="num" disabled>1</button>
+            <button class="num" disabled>2</button>
+            <button class="num" disabled>3</button>
+            <button class="num" disabled>0</button>
+            <button class="num" disabled>.</button>
+            <button class="equal" id="equalBtn" disabled>=</button>
+          </div>
+        </div>
+
+        <div class="right">
+          <div class="op-box" id="opBox">
+            <div class="op-slider" id="opSlider"></div>
+            <button class="op-item" data-op="+" style="top: 10%;" disabled>+</button>
+            <button class="op-item" data-op="-" style="top: 30%;" disabled>−</button>
+            <button class="op-item" data-op="*" style="top: 50%;" disabled>×</button>
+            <button class="op-item" data-op="/" style="top: 70%;" disabled>/</button>
+            <button class="op-item" data-op="%" style="top: 90%;" disabled>%</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="javagang.js"></script>
+</body>
+</html>
